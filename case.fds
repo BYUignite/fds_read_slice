@@ -1,0 +1,63 @@
+&HEAD  CHID='case_fds', TITLE='2.5 m/s uniform wind, 30% slope (set via gravity vec), 16 m^2 heptane' /
+&TIME  T_END= 5 /
+
+!==================== Mesh
+
+&MULT  ID='m1', DX=20, DY=24, DZ=15,
+       I_LOWER=0, I_UPPER=1, J_LOWER=0, J_UPPER=0, K_LOWER=0, K_UPPER=1 /
+&MESH  IJK=40, 24, 30, XB= 0, 20, 0, 24, 0, 15, MULT_ID='m1' /
+
+!==================== Domain Boundaries
+
+&SURF ID='wind', VEL=-2.5, COLOR='GRAY' /
+
+&VENT DB= 'XMIN', SURF_ID='wind' /
+&VENT MB= 'XMAX', SURF_ID='OPEN' /
+&VENT MB= 'YMIN', SURF_ID='OPEN' /
+&VENT MB= 'YMAX', SURF_ID='OPEN' /
+&VENT MB= 'ZMAX', SURF_ID='OPEN' /
+
+&VENT XB=4.0, 8.0, 10.0, 14.0, 0.0, 0.0, SURF_ID='HEPTANE_PLATE', OUTLINE=.TRUE. /
+&SURF ID='HEPTANE_PLATE', COLOR='WHITE', HRRPUA= 2800., ADIABATIC=.TRUE. /
+
+&SURF ID = 'ground', ADIABATIC=.TRUE., COLOR='TAN' /
+&OBST XB=0,40,0,24,0,0, SURF_ID='ground' /
+
+!==================== Heptane Fuel 
+
+&REAC FUEL='N-HEPTANE', SOOT_YIELD=0.037 /
+
+!==================== Initial velocity profile
+
+&CSVF UVWFILE='initial_velocity_field_m', PER_MESH=T /
+
+!==================== Other settings
+
+&MISC   BNDF_DEFAULT=.FALSE., TMPA=25, HUMIDITY=54,       
+        GVEC=-2.81888, 0.0, -9.396276 /
+
+&RADI  RADIATION=.TRUE. /
+
+!==================== Ouptut
+
+!----------------- dump
+
+&DUMP  NFRAMES= 20 /
+
+!----------------- planes
+
+&SLCF  PBY=12, QUANTITY='TEMPERATURE', VECTOR=.TRUE. /
+&SLCF  PBY=12, QUANTITY='VELOCITY' /
+&SLCF  PBY=12, QUANTITY='INTEGRATED INTENSITY' /
+&SLCF  PBY=12, QUANTITY='PRESSURE' /
+&SLCF  PBY=12, QUANTITY='MASS FRACTION', SPEC_ID='OXYGEN' /
+
+&SLCF  PBX=15.0, QUANTITY='TEMPERATURE', VECTOR=.TRUE. /
+&SLCF  PBX=15.0, QUANTITY='VELOCITY' /
+&SLCF  PBX=15.0, QUANTITY='PRESSURE' /
+&SLCF  PBX=15.0, QUANTITY='MASS FRACTION', SPEC_ID='OXYGEN' /
+&SLCF  PBX=15.0, QUANTITY='INTEGRATED INTENSITY' /
+
+!==================== END
+
+ &TAIL  /
