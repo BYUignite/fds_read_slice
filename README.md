@@ -4,6 +4,12 @@ Case is a box with a square plume with wind on a slope.
 The slope is modeled through the gravity vector.
 Case is setup for four MPI processes (four meshes).
 
+The purpose of this case and code is the get_var_slice.py script that reads the
+slice files across multiple meshes and outputs a single variable at all (or fewer) output times.
+The QUANTITIES allowed should be fairly generic, but this was not extensively tested.
+The meshes are assumed to be set up in a Cartesian layout in a right rectangular prism.
+No accounting is made for overlapping, refined, or stretched meshes.
+
 **Files:**
 * case.fds:               input file
 * go.sh:                  driver script: run this!
