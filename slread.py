@@ -11,10 +11,12 @@ def slread( fname, Tstart, Tend, *args, **kwargs ):
     Reads FDS slice file
     Based on slread.m by Simo Hostikka
     https://github.com/firemodels/fds/blob/master/Utilities/Matlab/scripts/slread.m
-    (QQ,Time)=slread(fname,Tstart,Tend [,Tstep]);
+    (QQ,Time)=slread(fname,Tstart,Tend [,Nframes, gridskip, timeskip]);
       Tstart  is start time
       Tend    is end time
       Nframes is number of slice file frames (FDS default is 1000 between Tstart and Tend)
+      gridskip is a skip rate for reading cells: =2 --> read every other cell, etc.
+      timeskip is a skip rate for frames: =2 --> read every other frame, etc.
       QQ      contains the data
       Time    contains the time points
     """
