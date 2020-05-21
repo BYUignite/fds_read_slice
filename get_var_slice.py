@@ -1,3 +1,29 @@
+###############################################################################
+# David O. Lignell
+# May 21, 2020
+
+# get_var_slice.py function calls and extends the slread.py script. The
+# slread.py script reads a given slice file. This will be for a particular
+# mesh, for a particular variable. The get_var_slice.py script here provides a
+# simple interface that will read all mesh files for a given variable for a
+# given slice and combine them into a single variable for easy plotting or
+# analysis. This is convenient for computing average or fluctuating fields, or
+# otherwise processing the data contained in a slice. The interface requires
+# minimal information from the user and reads the FDS input file to gather
+# required information.
+#
+# A complete test case setup is available on Github at
+# https://github.com/BYUignite/fds_read_slice.
+#
+# Note, if this file is called as main, e.g., as: python3 get_var_slice.py,
+# then it will call the get_var_slice function and plot the results. See the
+# bottom. You'll need to edit key vars below.
+# 
+# A Jupyter notebook plot_slice.ipynb driver that calls the main function get_var_slice and
+# plots the results is provided.
+#
+# Use Python 3
+
 from slread import *
 import numpy as np
 import matplotlib.pyplot as plt
