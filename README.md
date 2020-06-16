@@ -5,6 +5,7 @@
 Case is a box with a square plume with wind on a slope. 
 The slope is modeled through the gravity vector.
 Case is setup for four MPI processes (four meshes).
+There is also a case2 that uses 256 MPI processes (256 meshes) and multiple planes.
 
 The purpose of this case and code is the get_var_slice.py script that reads the
 slice files across multiple meshes and outputs a single variable at all (or fewer) output times.

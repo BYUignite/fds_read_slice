@@ -3,6 +3,6 @@
 date
 
 python3 make_init_vel_field.py
-mpiexec -np 4 fds dol.fds
+mpiexec -np 4 fds case.fds
 
 date
